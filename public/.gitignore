@@ -1,0 +1,41 @@
+dist/
+
+# Node specific #
+#################
+lib-cov
+*.seed
+*.log
+*.dat
+*.out
+*.pid
+*.gz
+pids
+logs
+#results
+npm-debug.log
+node_modules/
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Ignore HTML File
+*.html
+*.htm
+
+# Ignore CSS & Map File
+css/*.css
+*.css
+*.map
+
+# Sass #
+########
+.sass-cache/
+*.css.map
+
+*.config
