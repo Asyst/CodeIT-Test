@@ -250,8 +250,8 @@ require(['jquery', 'vue', 'slick', 'ftscroller', 'chart', 'semantic'], function 
             years = void 0;
 
         date = new Date(Number(ts));
-        days = date.getDate();
-        months = date.getMonth() + 1;
+        days = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+        months = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
         years = date.getFullYear();
 
         this.newsDate.push(days + '.' + months + '.' + years);
