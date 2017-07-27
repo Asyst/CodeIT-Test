@@ -241,7 +241,7 @@ require(['jquery', 'vue', 'slick', 'ftscroller', 'chart', 'semantic'], function 
         var ctx = document.getElementById("doughnutChart").getContext("2d");
         var mydoughnutChart = new Chart(ctx).Doughnut(doughnutData, doughnutOptions);
 
-        console.log(countriesAmount.ua);
+        // console.log(countriesAmount.ua);
       },
       formatDate: function formatDate(ts) {
         var date = void 0,

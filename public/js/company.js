@@ -1,5 +1,4 @@
 require(['jquery', 'vue', 'slick', 'ftscroller', 'chart', 'semantic'], function ($, Vue, slick, ftscroller, Chart) {
-  console.log('company init');
 
   Vue.component('total-companies', {
     template: `<div class="statistic">
@@ -92,8 +91,6 @@ require(['jquery', 'vue', 'slick', 'ftscroller', 'chart', 'semantic'], function 
               $('.ftscroller_y').addClass('ui').addClass('celled').addClass('list')
             }, 50);
 
-            // console.log(self.companyList);
-
             self.getCountCountries();
           })
           .fail(function (error) {
@@ -147,52 +144,29 @@ require(['jquery', 'vue', 'slick', 'ftscroller', 'chart', 'semantic'], function 
       },
       getCountCountries: function () {
         this.countriesAmount = {
-          ua: 0,
-          pl: 0,
-          se: 0,
-          de: 0,
-          us: 0,
-          no: 0,
           total: 0
         };
 
         this.companyList.map(function (company) {
           this.countriesAmount.total++;
 
-          switch (company.location.code) {
-            case 'UA':
-              this.countriesAmount.ua++;
-              break;
-            case 'PL':
-              this.countriesAmount.pl++;
-              break;
-            case 'SE':
-              this.countriesAmount.se++;
-              break;
-            case 'DE':
-              this.countriesAmount.de++;
-              break;
-            case 'US':
-              this.countriesAmount.us++;
-              break;
-            case 'NO':
-              this.countriesAmount.no++;
-              break;
+          if ( this.countriesAmount[company.location.code] !== undefined ) {
+            this.countriesAmount[company.location.code] += 1;
+          }
+          else {
+            this.countriesAmount[company.location.code] = 1;
           }
 
         }, this);
 
-        // console.log('UA: ' + this.countriesAmount.ua + '\n' + 'PL: ' + this.countriesAmount.pl + '\n' + 'SE: ' + this.countriesAmount.se + '\n' + 'DE: ' + this.countriesAmount.de + '\n' + 'US: ' + this.countriesAmount.us + '\n' + 'NO: ' + this.countriesAmount.no);
-        // console.log('Total: ' + this.countriesAmount.total);
-
         this.initChart(this.countriesAmount);
-
-        // return this.;
       },
       initChart: function (countriesAmount) {
         // init chart
         // Doughnut Chart Options
-        let doughnutOptions = {
+        let
+          country = {};
+          doughnutOptions = {
 
         	segmentShowStroke : true,
 
@@ -215,48 +189,44 @@ require(['jquery', 'vue', 'slick', 'ftscroller', 'chart', 'semantic'], function 
         	onAnimationComplete : null
         }
 
-        let ua = countriesAmount.ua,
-            pl = countriesAmount.pl,
-            se = countriesAmount.se,
-            de = countriesAmount.de,
-            us = countriesAmount.us,
-            no = countriesAmount.no;
-
+        for ( let code in countriesAmount ) {
+          country[code] = countriesAmount[code];
+        }
 
         // Doughnut Chart Data
         let doughnutData = [
         	{
-        		value: ua,
+        		value: country.UA,
         		color:"purple",
             highlight: "#5AD3D1",
             label: "Ukraine"
         	},
         	{
-        		value : pl,
+        		value : country.PL,
         		color : "#1789D4",
             highlight: "#5AD3D1",
             label: "Poland"
         	},
         	{
-        		value : se,
+        		value : country.SE,
         		color : "#CB4B16",
             highlight: "#5AD3D1",
             label: "Sweden"
         	},
         	{
-        		value : de,
+        		value : country.DE,
         		color : "#1F8261",
             highlight: "#5AD3D1",
             label: "Germany"
         	},
         	{
-        		value : us,
+        		value : country.US,
         		color : "#FFA500",
             highlight: "#5AD3D1",
             label: "United States"
         	},
           {
-        		value : no,
+        		value : country.NO,
         		color : "lime",
             highlight: "#5AD3D1",
             label: "Norway"
@@ -266,12 +236,11 @@ require(['jquery', 'vue', 'slick', 'ftscroller', 'chart', 'semantic'], function 
         let ctx = document.getElementById("doughnutChart").getContext("2d");
         let mydoughnutChart = new Chart(ctx).Doughnut(doughnutData, doughnutOptions);
 
-        console.log(countriesAmount.ua);
       },
       formatDate: function (ts) {
         let date, days, months, years;
 
-        date = new Date(Number(ts));
+        date = new Date(Number(ts) * 1000);
         days = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
         months = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1);
         years = date.getFullYear();
@@ -283,8 +252,6 @@ require(['jquery', 'vue', 'slick', 'ftscroller', 'chart', 'semantic'], function 
   });
 
   $('#news-slider').on('init', function (slick) {
-    console.log('slick init', slick);
-
     $('.slick-track').addClass('ui').addClass('items');
   })
 });

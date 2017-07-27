@@ -1,24 +1,17 @@
 require(['jquery', 'semantic'], function ($) {
-  console.log('form init');
-
-  (function () {
-    $('.ui.dropdown').dropdown();
-    $('.ui.checkbox').checkbox();
-    $('.message .close').on('click', function() {
-      $(this)
-        .closest('.message')
-        .transition('fade');
-    }); 
-  }());
-
   let formData;
+
+  $('.ui.dropdown').dropdown();
+  $('.ui.checkbox').checkbox();
+  $(document).on('click', '.message .close', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade');
+  });
 
   // Validation Form
   $('.ui.form').form({
     onSuccess: function (event, fields) {
-      console.log($(this));
-
-      // formData = JSON.stringify(fields);
       formData = $(this).serialize();
 
       console.log(formData);

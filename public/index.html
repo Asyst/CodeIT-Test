@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CodeIT Test</title>
+  <link rel="stylesheet" href="build/css/main.css">
+  <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+</head>
+<body>
+  <div class="ui container">
+    <div class="form__holder">
+      <div class="ui message">
+        <i class="close icon"></i>
+        <div class="header"></div>
+        <div class="message__content"></div>
+      </div>
+
+      <h3 class="ui center aligned block header">
+        Sign Up
+      </h3>
+      <form class="ui form">
+        <div class="required field">
+          <label>Name</label>
+          <div class="ui left icon input">
+            <input type="text" name="name" placeholder="Name">
+            <i class="user icon"></i>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Second Name</label>
+          <div class="ui left icon input">
+            <input type="text" name="secondname" placeholder="Second Name">
+            <i class="user icon"></i>
+          </div>
+        </div>
+        <div class="required field">
+          <label>E-mail</label>
+          <div class="ui left icon input">
+            <input type="email" name="email" placeholder="E-mail">
+            <i class="mail icon"></i>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Gender</label>
+          <div class="ui selection dropdown">
+            <input type="hidden" name="gender">
+            <i class="dropdown icon"></i>
+            <div class="default text">Gender</div>
+            <div class="menu">
+              <div class="item" data-value="male">
+                <i class="male icon"></i>
+                Male
+              </div>
+              <div class="item" data-value="female">
+                <i class="female icon"></i>
+                Female
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Password</label>
+          <div class="ui left icon input">
+            <input type="password" name="pass" placeholder="Password">
+            <i class="asterisk icon"></i>
+          </div>
+        </div>
+        <div class="required inline field">
+          <div class="ui checkbox">
+            <input type="checkbox" tabindex="0" class="hidden" data-validate="checked">
+            <label>Conditions of Agreement</label>
+          </div>
+        </div>
+        <div class="button__holder">
+          <button class="ui right floated button" type="submit">Submit</button>
+        </div>
+        <!-- <div class="ui error message"></div> -->
+      </form>
+    </div><!-- ./ form holder -->
+  </div><!-- ./ container -->
+
+  <script data-main="js/require-setup" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.min.js"></script>
+</body>
+</html>

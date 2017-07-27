@@ -24,10 +24,6 @@ node_modules/
 *.o
 *.so
 
-# Ignore HTML File
-*.html
-*.htm
-
 # Ignore CSS & Map File
 css/*.css
 *.css

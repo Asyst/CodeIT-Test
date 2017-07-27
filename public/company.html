@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Company Page</title>
+  <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+  <link rel="stylesheet" href="build/css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
+</head>
+<body>
+  <div id="company" class="ui container">
+    <div class="ui grid container">
+
+        <div class="eight wide column">
+          <div class="ui large header">Total Companies</div>
+          <div class="ui text loader">Loading</div>
+          <div class="ui statistics">
+            <total-companies v-bind:total="totalCompanies"></total-companies>
+          </div>
+        </div>
+        <div class="eight wide column">
+          <div class="ui large header">List of Companies</div>
+          <div class="ui text loader">Loading</div>
+          <div id="companies">
+            <company-list v-bind:company="company" v-for="company in companyList"></company-list>
+          </div>
+        </div>
+
+        <div class="eight wide column">
+          <div class="ui large header">Companies by Location</div>
+          <div class="ui text loader">Loading</div>
+          <div id="chart">
+            <!-- <diagram v-for="company in companyList" v-bind:location="getCountCountries"></diagram> -->
+            <canvas id="doughnutChart" width="220" height="220"></canvas>
+          </div>
+        </div>
+        <div class="eight wide column">
+          <div class="ui large header">News</div>
+          <div class="ui text loader">Loading</div>
+          <div id="news-slider">
+            <news-list :news="news"
+                       :newsDate="newsDate"
+                       v-for="news in newsList"></news-list>
+          </div>
+        </div>
+
+    </div>
+  </div><!-- ./ company -->
+
+  <script data-main="js/require-setup.js" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.min.js"></script>
+</body>
+</html>
+
+<!-- Templates -->
+<!-- Companies List -->
+<script id="companies-list" type="text/x-template">
+  <div class="ui item">
+    <div class="content">
+      <div class="header" @click="selectItem">{{ company.name }}</div>
+    </div>
+  </div>
+</script>
+<!-- News List -->
+<script id="news-list" type="text/x-template">
+  <div class="item">
+    <div class="image">
+      <!-- <img :src="news.img"> -->
+    </div>
+    <div class="content">
+      <a v-bind:href="news.link" class="header">{{ news.author }}</a>
+      <div class="meta">
+        <span>Description</span>
+        <!-- <span>{{ news.img }}</span> -->
+      </div>
+      <div class="description">
+        <p>{{ news.description }}</p>
+      </div>
+      <div class="date"></div>
+    </div>
+  </div>
+</script>

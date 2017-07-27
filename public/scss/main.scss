@@ -48,6 +48,12 @@
   }
 }
 
+.slick-slide {
+  &:focus, a {
+    outline: none;
+  }
+}
+
 .slick-list {
   max-height: 200px;
   overflow: hidden;
